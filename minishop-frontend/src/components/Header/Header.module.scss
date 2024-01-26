@@ -1,0 +1,43 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: #282c34;
+
+  padding: 5px 15px;
+  margin: 0;
+
+  cursor: pointer;
+}
+
+.title {
+  font-weight: 900;
+  font-family: 'Titilium Web', sans-serif;
+  color: white;
+  font-size: 64px;
+  text-shadow: 0px 0px 5px lightgray;
+
+  width: auto;
+  display: inline-block;
+}
+
+.btn {
+  font-weight: 900;
+  color: white;
+  font-size: 24px;
+  padding: 5px 10px;
+  text-shadow: 0px 0px 5px dimgray;
+
+  background-color: #FE5F55;
+  border: none;
+  border-radius: 5px;
+
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
