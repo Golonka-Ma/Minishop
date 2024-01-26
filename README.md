@@ -1,0 +1,2 @@
+# Minishop
+Aplikacji do zarządzania
