@@ -8,8 +8,9 @@
 
   padding: 5px 15px;
   margin: 0;
+  box-shadow: 0px 2px 10px gray;
 
-  cursor: pointer;
+  
 }
 
 .title {
@@ -26,9 +27,10 @@
 .btn {
   font-weight: 900;
   color: white;
-  font-size: 24px;
+  font-size: 20px;
   padding: 5px 10px;
   text-shadow: 0px 0px 5px dimgray;
+  font-family: 'Raleway';
 
   background-color: #FE5F55;
   border: none;
