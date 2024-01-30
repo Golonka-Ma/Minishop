@@ -1,95 +1,15 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import styles from './AdminPanel.module.scss';
-import {addProduct} from "../ProductsScreen/ProductService";
-
-const prods = [
-    {
-        name: 'Product',
-        img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
-        price: '2137.69$',
-        id: 1,
-    },
-    {
-        name: 'Product',
-        img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
-        price: '2137.69$',
-        id: 2,
-    },
-    {
-        name: 'Product',
-        img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
-        price: '2137.69$',
-        id: 3,
-    },
-    {
-        name: 'Product',
-        img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
-        price: '2137.69$',
-        id: 4,
-    },
-    {
-        name: 'Product',
-        img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
-        price: '2137.69$',
-        id: 5,
-    },
-    {
-        name: 'Product',
-        img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
-        price: '2137.69$',
-        id: 6,
-    },
-    {
-        name: 'Product',
-        img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
-        price: '2137.69$',
-        id: 7,
-    },
-    {
-        name: 'Product',
-        img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
-        price: '2137.69$',
-        id: 8,
-    },
-    {
-        name: 'Product',
-        img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
-        price: '2137.69$',
-        id: 9,
-    },
-    {
-        name: 'Product',
-        img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
-        price: '2137.69$',
-        id: 10,
-    },
-    {
-        name: 'Product',
-        img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
-        price: '2137.69$',
-        id: 11,
-    },
-    {
-        name: 'Product',
-        img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
-        price: '2137.69$',
-        id: 12,
-    },
-    {
-        name: 'Product',
-        img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
-        price: '2137.69$',
-        id: 13,
-    },
-]
+import {addProduct, getAllProducts} from "../ProductsScreen/ProductService";
 
 const AdminPanel = () => {
 
     const [inputs, setInputs] = useState({
         name: '',
-        img: '',
         price: '',
+        img: '',
     })
+    const [allProducts, setAllProducts] = useState([]);
     const [indexToDrop, setIndexToDrop] = useState(-1);
 
     const handleAddItem = async (e) => {
@@ -114,6 +34,15 @@ const AdminPanel = () => {
 
     };
 
+    useEffect(() => {
+        try {
+            const products = getAllProducts();
+            products.then((body) => setAllProducts(body));
+        } catch (e) {
+            console.log('Error: ' + 'https://media1.tenor.com/m/Jc9jT66AJRwAAAAd/chipi-chipi-chapa-chapa.gif');
+        }
+    }, []);
+
 
     const handleDropItem = (e) => {
         e.preventDefault();
@@ -131,18 +60,21 @@ const AdminPanel = () => {
                             type='text' 
                             id='name'
                             placeholder='Name'
+                            value={inputs.name}
                             onChange={(e) => setInputs({...inputs, name: e.target.value})}/>
                         <label htmlFor='img'>Image</label>
                         <input 
                             type='text' 
                             id='img'
                             placeholder='Image link'
+                            value={inputs.img}
                             onChange={(e) => setInputs({...inputs, img: e.target.value})}/>
                         <label htmlFor='price'>Price</label>
                         <input 
                             type='number' 
                             id='price'
                             placeholder='Price'
+                            value={inputs.price}
                             onChange={(e) => setInputs({...inputs, price: e.target.value})}/>
                         <button onClick={(e) => handleAddItem(e)}>Add element</button>                            
                     </form>
@@ -152,7 +84,7 @@ const AdminPanel = () => {
                             tabIndex={0}
                             role='listbox'>
                             {
-                                prods.map((elem, ind) => (
+                                allProducts.map((elem, ind) => (
                                     <li key={ind} onClick={() => setIndexToDrop(ind)} style={indexToDrop === ind ? {backgroundColor: '#686dd4'} : {}}>
                                         <span>ID: {elem.id} -- </span>  
                                         <span> {elem.name}, {elem.price}</span>

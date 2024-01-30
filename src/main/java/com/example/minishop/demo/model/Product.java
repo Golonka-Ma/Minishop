@@ -14,7 +14,7 @@ public class Product {
     @Column(nullable = false)
     private String img;
     @Column(nullable = false)
-    private Double price;
+    private String price;
 
     public Product(String name, String price, String img) {
         this.name = name;
@@ -50,7 +50,7 @@ public class Product {
 
     public String getPrice() { return price;}
 
-    public void setPrice(Double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 }

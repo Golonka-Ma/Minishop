@@ -27,6 +27,11 @@ const Header = () => {
                         Home
                     </div>
                 </Link>
+                <Link to={AppRoutes.PRODUCTS} style={{textDecoration: "none"}}>
+                    <div>
+                        Products
+                    </div>
+                </Link>
                 {loggedIn && <Link to={AppRoutes.ADMIN} style={{textDecoration: "none"}}>
                     <div>
                         Admin panel
