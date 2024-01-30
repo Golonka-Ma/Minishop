@@ -3,6 +3,7 @@ const AppRoutes = {
     LOGIN: '/login',
     PRODUCTS: '/products',
     ORDER: '/',
+    ADMIN: '/admin',
 }
 
 export default AppRoutes;

@@ -1,0 +1,137 @@
+.wrapper {
+
+    padding: 150px 5%;
+}
+
+.adminWrapper {
+
+    font-family: 'Raleway';
+
+    border-radius: 15px;
+    overflow: hidden;
+    width: fit-content;
+    margin: auto;
+}
+
+.bar {
+    height: 40px;
+    background-color: #282c34;
+}
+
+.formsContainer {
+    height: fit-content;
+    background-color: #FFFFFF;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 3vw;
+}
+
+.form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    
+        background-color: #ffffff;
+    
+        border: none;
+        overflow: hidden;
+    
+        padding: 40px 30px;
+        padding-top: 20px;
+}
+
+.form input {
+    width: 100%;
+    height: 48px;
+
+    font-size: 16pt;
+    padding-left: 10px;
+
+    border-radius: 15px;
+    border: none;
+    box-shadow: 2px 2px 10px gray;
+    outline: none;
+
+    transition: all 0.2s ease-in-out;
+    
+    background-color: #282c34;
+    color: #ffffff;
+    font-family: 'Raleway';
+    margin-bottom: 15px;
+    
+}
+
+.form label {
+    font-family: 'Raleway';
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-top: 5px;
+    align-self: flex-start;
+}
+
+.form input:focus {
+    transform: scale(1.05);
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+
+.form button {
+    color: #ffffff;
+    font-weight: 800;
+    font-family: 'Raleway';
+    font-size: 14pt;
+
+    margin-top: 20px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: none;
+    background-color: #FE5F55;
+    box-shadow: 2px 2px 10px gray;
+
+    align-self: flex-start;
+
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.form button:hover {
+    transform: scale(1.1);
+}
+
+.listbox {
+    height: inherit;
+    max-height: 270px;
+    width: 300px;
+    border: 1px solid black;
+    overflow-y: scroll;
+}
+
+.listbox li {
+    list-style: none;
+    height: 48px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    user-select: none;
+    background-color: #282c34;
+    color: #FFFFFF;
+}
+
+.listbox li:hover {
+    background-color: #3e444e;
+    cursor: pointer;
+}

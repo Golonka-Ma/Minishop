@@ -11,13 +11,14 @@ public class Product {
 
     @Column(nullable = false)
     private String name;
-
+    @Column(nullable = false)
+    private String img;
     @Column(nullable = false)
     private Double price;
 
-    public Product(Long id, String name, Double price) {
-        this.id = id;
+    public Product(String name, String price, String img) {
         this.name = name;
+        this.img = img;
         this.price = price;
     }
 
@@ -33,6 +34,12 @@ public class Product {
         this.id = id;
     }
 
+    public String getImg() { return img; }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     public String getName() {
         return name;
     }
@@ -41,12 +48,11 @@ public class Product {
         this.name = name;
     }
 
-    public Double getPrice() {
-        return price;
-    }
+    public String getPrice() { return price;}
 
     public void setPrice(Double price) {
         this.price = price;
     }
 }
+
 

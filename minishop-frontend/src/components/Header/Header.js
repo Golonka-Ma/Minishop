@@ -1,23 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Header.module.scss';
 import {Link, useNavigate} from "react-router-dom";
 import AppRoutes, {Colours} from '../../assets/Constants';
 
 const Header = () => {
-    const navigate = useNavigate();
 
-    const navToLogin = () => {
-        console.log('Navigating to login');
-        navigate('/login');
-    }
+    const [loggedIn, setLoggedIn] = useState(false);
+
+
+    useEffect(() => {
+        const obj = JSON.parse(localStorage.getItem('logged_user'));
+        if(obj) setLoggedIn(true);
+    }, []);
 
     return (
+        <>
             <header className={styles.wrapper}>
                 <Link to={AppRoutes.ROOT} style={{textDecoration: "none"}}>
                     <h1 className={styles.title}>minishop</h1>
                 </Link>
                 <Link to={AppRoutes.LOGIN}><button className={styles.btn}>sign in</button></Link>
             </header>
+            <div className={styles.menu}>
+                <Link to={AppRoutes.ROOT} style={{textDecoration: "none"}}>
+                    <div>
+                        Home
+                    </div>
+                </Link>
+                {loggedIn && <Link to={AppRoutes.ADMIN} style={{textDecoration: "none"}}>
+                    <div>
+                        Admin panel
+                    </div>
+                </Link>}
+            </div>
+        </>
+            
 
         // <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px', backgroundColor: '#f3f3f3' }}>
         //     <h1 style={{ margin: '0' }}>MiniShop</h1> {/* Logo aplikacji */}

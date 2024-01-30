@@ -12,7 +12,11 @@ const LoginScreen = () => {
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        if(inputs.login === 'admin' && inputs.password === 'admin') navigate(AppRoutes.ROOT);
+        if(inputs.login === 'admin' && inputs.password === 'admin') {
+            const puttable = JSON.stringify(inputs);
+            localStorage.setItem('logged_user', puttable);
+            navigate(AppRoutes.ROOT);
+        };
     }
 
     return(
