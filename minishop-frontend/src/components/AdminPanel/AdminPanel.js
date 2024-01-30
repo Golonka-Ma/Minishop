@@ -91,9 +91,14 @@ const AdminPanel = () => {
     })
     const [indexToDrop, setIndexToDrop] = useState(-1);
 
-    const hello = (e) => {
+    const handleAddItem = (e) => {
         e.preventDefault();
         
+    }
+
+    const handleDropItem = (e) => {
+        e.preventDefault();
+
     }
 
     return(
@@ -120,7 +125,7 @@ const AdminPanel = () => {
                             id='price'
                             placeholder='Price'
                             onChange={(e) => setInputs({...inputs, price: e.target.value})}/>
-                        <button onClick={(e) => hello(e)}>Add element</button>                            
+                        <button onClick={(e) => handleAddItem(e)}>Add element</button>                            
                     </form>
 
                     <form className={styles.form}>
@@ -129,14 +134,14 @@ const AdminPanel = () => {
                             role='listbox'>
                             {
                                 prods.map((elem, ind) => (
-                                    <li key={ind} onClick={() => setIndexToDrop(ind)}>
+                                    <li key={ind} onClick={() => setIndexToDrop(ind)} style={indexToDrop === ind ? {backgroundColor: '#686dd4'} : {}}>
                                         <span>ID: {elem.id} -- </span>  
-                                        <span>{elem.name}, {elem.price}</span>
+                                        <span> {elem.name}, {elem.price}</span>
                                     </li>
                                 ))
                             }
                         </ul>
-                        <button>Add element</button>                            
+                        <button onClick={(e) => handleDropItem(e)}>Drop element</button>                            
                     </form>
                 </div>
             </div>
