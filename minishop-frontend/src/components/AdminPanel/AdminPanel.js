@@ -98,7 +98,7 @@ const AdminPanel = () => {
 
     const handleDropItem = (e) => {
         e.preventDefault();
-
+        
     }
 
     return(

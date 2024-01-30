@@ -9,7 +9,10 @@ import styles from './App.module.scss';
 import ProductsScreen from './components/ProductsScreen/ProductsScreen';
 import AdminPanel from './components/AdminPanel/AdminPanel';
 
-function App() {
+const App = () => {
+
+    
+
     return (
         <div className={styles.wrapper}>
             <Router>
