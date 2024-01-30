@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from './AdminPanel.module.scss';
+import {addProduct} from "../ProductsScreen/ProductService";
 
 const prods = [
     {
@@ -12,73 +13,73 @@ const prods = [
         name: 'Product',
         img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
         price: '2137.69$',
-        id: 1,
+        id: 2,
     },
     {
         name: 'Product',
         img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
         price: '2137.69$',
-        id: 1,
+        id: 3,
     },
     {
         name: 'Product',
         img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
         price: '2137.69$',
-        id: 1,
+        id: 4,
     },
     {
         name: 'Product',
         img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
         price: '2137.69$',
-        id: 1,
+        id: 5,
     },
     {
         name: 'Product',
         img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
         price: '2137.69$',
-        id: 1,
+        id: 6,
     },
     {
         name: 'Product',
         img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
         price: '2137.69$',
-        id: 1,
+        id: 7,
     },
     {
         name: 'Product',
         img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
         price: '2137.69$',
-        id: 1,
+        id: 8,
     },
     {
         name: 'Product',
         img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
         price: '2137.69$',
-        id: 1,
+        id: 9,
     },
     {
         name: 'Product',
         img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
         price: '2137.69$',
-        id: 1,
+        id: 10,
     },
     {
         name: 'Product',
         img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
         price: '2137.69$',
-        id: 1,
+        id: 11,
     },
     {
         name: 'Product',
         img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
         price: '2137.69$',
-        id: 1,
+        id: 12,
     },
     {
         name: 'Product',
         img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
         price: '2137.69$',
-        id: 1,
+        id: 13,
     },
 ]
 
@@ -91,10 +92,28 @@ const AdminPanel = () => {
     })
     const [indexToDrop, setIndexToDrop] = useState(-1);
 
-    const handleAddItem = (e) => {
+    const handleAddItem = async (e) => {
         e.preventDefault();
-        
-    }
+        const newProduct = {
+            name: inputs.name,
+            img: inputs.img,
+            price: inputs.price
+        };
+        try {
+            const addedProduct = await addProduct(inputs);
+            alert('Produkto zostal dodany');
+            setInputs({
+                name: '',
+                price: '',
+                img: '',
+            });
+            // Aktualizacja stanu i inne działania
+        } catch (error) {
+            console.log('Error, ale chuj');
+        }
+
+    };
+
 
     const handleDropItem = (e) => {
         e.preventDefault();
