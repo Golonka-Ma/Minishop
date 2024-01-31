@@ -1,48 +1,25 @@
 import React, {useEffect, useState} from "react";
 import styles from './ProductsScreen.module.scss';
 import {getAllProducts} from "./ProductService";
-
-const prods = [
-    {
-        name: 'Product',
-        img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
-        price: '2137.69$',
-        id: 1,
-    },
-    {
-        name: 'Product',
-        img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
-        price: '2137.69$',
-        id: 1,
-    },
-    {
-        name: 'Product',
-        img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
-        price: '2137.69$',
-        id: 1,
-    },
-    {
-        name: 'Product',
-        img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
-        price: '2137.69$',
-        id: 1,
-    },
-    {
-        name: 'Product',
-        img: 'https://media.licdn.com/dms/image/D4D03AQGghECzW6fpdg/profile-displayphoto-shrink_800_800/0/1672226788858?e=2147483647&v=beta&t=fXz9hjHfgMUEM2apurfu9Qo3h9grTm8dj8N61IpliSc',
-        price: '2137.69$',
-        id: 1,
-    },
-]
+import {useLocation} from "react-router-dom";
+import Searchbar from "../Searchbar/Searchbar";
 
 const ProductsScreen = () => {
 
+    const {state} = useLocation();
     const [allProducts, setAllProducts] = useState([]);
+    const [searchInput, setSearchInput] = useState('');
 
     useEffect(() => {
         try {
+            console.log(state);
             const products = getAllProducts();
             products.then((body) => setAllProducts(body));
+            if(state.searchInput) {
+                console.log(state);
+                setSearchInput(state.searchInput);
+            }
+
         } catch (e) {
             console.log('ProductsScreen: Problem z fetchowaniem wszystkich produktów');
         }
@@ -54,8 +31,12 @@ const ProductsScreen = () => {
             <div className={styles.productsWrapper}>
                 <div className={styles.bar}></div>
                 <div className={styles.productsList}>
+                    <Searchbar altColor/>
                     {
-                        allProducts.map((elem, ind) => (
+                        (searchInput ?
+                            allProducts.filter(elem => elem.name.includes(searchInput)) :
+                            allProducts)
+                            .map((elem, ind) => (
                             <div className={styles.product}>
                                 <img className={styles.productImg} src={elem.img} />
                                 <span>
