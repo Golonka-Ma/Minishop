@@ -1,0 +1,19 @@
+.input {
+  height: 50px;
+  margin: 20px 40px;
+  width: 50%;
+
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  outline: none;
+
+  font-family: 'Raleway';
+  font-size: 18pt;
+
+  transition: all 0.3s ease-in-out;
+}
+
+.input:focus {
+  width: 75%;
+}
