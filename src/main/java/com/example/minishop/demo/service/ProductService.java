@@ -30,5 +30,14 @@ public class ProductService {
         return productRepository.save(product);
     }
 
+    public boolean deleteProduct(Long id) {
+        if (!productRepository.existsById(id)) {
+            return false;
+        }
+
+        productRepository.deleteById(id);
+        return true;
+    }
+
     // Dodatkowe metody biznesowe, np. delete, update
 }

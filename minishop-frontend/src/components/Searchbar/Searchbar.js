@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import styles from './Searchbar.module.scss';
 import {useLocation, useNavigate} from "react-router-dom";
 
-const magni = require('../../assets/l00pcia.png');
+const magni = require('../../assets/icons/l00pcia.png');
 
 const Searchbar = ({altColor}) => {
 

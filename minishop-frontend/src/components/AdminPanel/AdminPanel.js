@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import styles from './AdminPanel.module.scss';
-import {addProduct, getAllProducts} from "../../services/ProductService";
+import {addProduct, deleteProduct, getAllProducts} from "../../services/ProductService";
 import { useNavigate } from "react-router-dom";
 
 const AdminPanel = () => {
@@ -56,10 +56,24 @@ const AdminPanel = () => {
     })
 
 
-    const handleDropItem = (e) => {
+    const handleDropItem = async (e) => {
         e.preventDefault();
-        
-    }
+        if (indexToDrop !== null) {
+            try {
+                // Pobierz ID produktu do usunięcia
+                const productId = allProducts[indexToDrop].id;
+                // Usuń produkt za pomocą funkcji deleteProduct
+                await deleteProduct(productId);
+
+                // Usuń produkt z lokalnego stanu
+                const updatedProducts = allProducts.filter((_, ind) => ind !== indexToDrop);
+                setAllProducts(updatedProducts); // Aktualizuje stan
+                setIndexToDrop(null); // Resetuje wybrany indeks
+            } catch (error) {
+                console.error(error.message); // Wyświetla błąd w konsoli
+            }
+        }
+    };
 
     return(
         <div className={styles.wrapper}>

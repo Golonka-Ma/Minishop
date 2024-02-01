@@ -6,16 +6,15 @@
     align-items: center;
     flex-direction: column;
 
-    margin-top: 200px;
+    margin-top: 50px;
     z-index: -2;
 
     &::before {
         content: "sign in";
-        position: absolute;
-        font-size: 400pt;
+        position: relative;
+        font-size: 100pt;
         font-weight: 900;
         color: #191a1f;
-        bottom: 0;
         opacity: 0.6;
         z-index: 0;
     }
@@ -26,6 +25,7 @@
     border-radius: 15px;
     overflow: hidden;
     z-index: 1;
+    animation: fadeRight 0.5s ease-in-out;
 }
 
 .form {
@@ -105,4 +105,32 @@
 
 .form button:hover {
     transform: scale(1.1);
+}
+
+.subForm {
+    margin-top: 30px;
+    border-top: 3px solid #282c34;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    padding-top: 20px;
+    gap: 20px;
+}
+
+.subForm button {
+    margin: 0;
+}
+
+.subForm span {
+    font-family: 'Raleway';
+
+}
+
+@keyframes fadeRight {
+    0% {
+        transform: translateX(50px);
+        opacity: 0;
+    }
 }

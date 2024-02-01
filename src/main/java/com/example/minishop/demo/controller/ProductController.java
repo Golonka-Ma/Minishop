@@ -55,4 +55,15 @@ public class ProductController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
+        boolean isRemoved = productService.deleteProduct(id);
+
+        if (!isRemoved) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok().build();
+    }
+
 }

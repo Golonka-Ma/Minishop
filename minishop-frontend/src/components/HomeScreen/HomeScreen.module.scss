@@ -14,6 +14,7 @@
   border-radius: 15px;
   overflow: hidden;
   z-index: 1;
+  animation: fadeBottom 0.7s ease-in-out;
 }
 
 .bar {
@@ -62,6 +63,7 @@
   transition: background-color 0.1s ease-in-out;
   cursor: pointer;
   background-color: #EEEEEE;
+  max-width: 250px;
 }
 
 .recentlyAddedProduct:hover {
@@ -70,6 +72,8 @@
 
 .recentlyAddedProduct h2, .recentlyAddedProduct span {
   font-family: 'Raleway';
+  text-overflow: ellipsis;
+  overflow: hidden;
 
 }
 
@@ -102,6 +106,7 @@
   transition: background-color 0.1s ease-in-out;
   cursor: pointer;
   background-color: #EEEEEE;
+  max-width: 250px;
 }
 
 .exploreProduct:hover {
@@ -110,6 +115,7 @@
 
 .exploreProduct h2, .exploreProduct span {
   font-family: 'Raleway';
+  text-overflow: ellipsis;
 
 }
 
@@ -117,4 +123,11 @@
   width: 128px;
   height: 128px;
   border-radius: 15px;
+}
+
+@keyframes fadeBottom {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
 }

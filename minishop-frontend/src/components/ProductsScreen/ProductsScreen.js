@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from "react";
 import styles from './ProductsScreen.module.scss';
 import {getAllProducts} from "../../services/ProductService";
-import {useLocation} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import Searchbar from "../Searchbar/Searchbar";
+import {AppRoutes} from "../../assets/Constants";
 
 const ProductsScreen = () => {
 
@@ -31,19 +32,21 @@ const ProductsScreen = () => {
             <div className={styles.productsWrapper}>
                 <div className={styles.bar}></div>
                 <div className={styles.productsList}>
-                    <Searchbar altColor/>
                     {
                         (searchInput ?
-                            allProducts.filter(elem => elem.name.includes(searchInput)) :
+                            allProducts.filter(elem => elem.name.toLowerCase().includes(searchInput.toLowerCase())) :
                             allProducts)
                             .map((elem, ind) => (
-                            <div className={styles.product}>
-                                <img className={styles.productImg} src={elem.img} />
-                                <span>
-                                    <h2 className={styles.productName}>{elem.name}</h2>
-                                    <span className={styles.productPrice}>{elem.price}</span>
-                                </span>
-                            </div>
+                                <Link to={AppRoutes.PRODUCTS + '/' + elem.id} style={{textDecoration: 'none', color: 'black'}}>
+                                    <div className={styles.product}>
+                                        <img className={styles.productImg} src={elem.img} />
+                                        <span>
+                                            <h2 className={styles.productName}>{elem.name}</h2>
+                                            <span className={styles.productPrice}>{elem.price}</span>
+                                        </span>
+                                    </div>
+                                </Link>
+
                         ))
                     }
                 </div>

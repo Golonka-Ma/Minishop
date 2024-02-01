@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Header.module.scss';
 import {Link, useNavigate} from "react-router-dom";
-import AppRoutes, {Colours} from '../../assets/Constants';
+import {AppRoutes} from "../../assets/Constants";
+import Searchbar from "../Searchbar/Searchbar";
 
 const Header = () => {
 
@@ -42,6 +43,8 @@ const Header = () => {
                         Admin panel
                     </div>
                 </Link>}
+                <Searchbar />
+
             </div>
         </>
             
