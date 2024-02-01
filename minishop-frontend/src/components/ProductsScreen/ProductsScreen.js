@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import styles from './ProductsScreen.module.scss';
-import {getAllProducts} from "./ProductService";
+import {getAllProducts} from "../../services/ProductService";
 import {useLocation} from "react-router-dom";
 import Searchbar from "../Searchbar/Searchbar";
 

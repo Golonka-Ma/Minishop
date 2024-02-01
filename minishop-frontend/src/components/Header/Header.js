@@ -13,13 +13,18 @@ const Header = () => {
         if(obj) setLoggedIn(true);
     }, []);
 
+    const logoutUser = () => {
+        localStorage.removeItem('logged_user');
+        setLoggedIn(false);
+    }
+
     return (
         <>
             <header className={styles.wrapper}>
                 <Link to={AppRoutes.ROOT} style={{textDecoration: "none"}}>
                     <h1 className={styles.title}>minishop</h1>
                 </Link>
-                <Link to={AppRoutes.LOGIN}><button className={styles.btn}>sign in</button></Link>
+                <Link to={AppRoutes.LOGIN}><button className={styles.btn} onClick={() => logoutUser()}>{loggedIn ? 'sign out' : 'sign in'}</button></Link>
             </header>
             <div className={styles.menu}>
                 <Link to={AppRoutes.ROOT} style={{textDecoration: "none"}}>

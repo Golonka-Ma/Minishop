@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import styles from './HomeScreen.module.scss';
-import {getAllProducts} from "../ProductsScreen/ProductService";
+import {getAllProducts} from "../../services/ProductService";
 import _ from 'lodash';
 import Searchbar from "../Searchbar/Searchbar";
 

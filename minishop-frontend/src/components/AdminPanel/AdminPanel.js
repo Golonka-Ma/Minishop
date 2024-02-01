@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import styles from './AdminPanel.module.scss';
-import {addProduct, getAllProducts} from "../ProductsScreen/ProductService";
+import {addProduct, getAllProducts} from "../../services/ProductService";
+import { useNavigate } from "react-router-dom";
 
 const AdminPanel = () => {
 
@@ -11,6 +12,7 @@ const AdminPanel = () => {
     })
     const [allProducts, setAllProducts] = useState([]);
     const [indexToDrop, setIndexToDrop] = useState(-1);
+    const navigate = useNavigate();
 
     const handleAddItem = async (e) => {
         e.preventDefault();
@@ -42,6 +44,16 @@ const AdminPanel = () => {
             console.log('Error: ' + 'https://media1.tenor.com/m/Jc9jT66AJRwAAAAd/chipi-chipi-chapa-chapa.gif');
         }
     }, []);
+
+    useEffect(() => {
+        const token = localStorage.getItem('logged_user');
+        console.log(typeof(token));
+        if(!token) {
+            console.log('TOKEN BAD, SHOULD NAVIGATE');
+            navigate('/login');
+        }
+        return;
+    })
 
 
     const handleDropItem = (e) => {
